@@ -1,0 +1,38 @@
+<head>
+  <title>Aplicacion bonita ejemplo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<form id="formularioSuma">
+  <label for="numero1">Numero 1</label>
+  <input type="number" name="numero1" id="numero1" required>
+  <label for="numero2">Numero 2</label>
+  <input type="number" name="numero2" id="numero2" required>
+  <button>Enviar</button>
+</form>
+<h2>
+  El resultado es: <span id="resultadoSuma">esperando...</span>
+</h2>
+
+<script>
+  const urlApi = "http://localhost:8080";
+  const formularioSuma = document.getElementById('formularioSuma');
+  const resultadoSuma = document.getElementById('resultadoSuma');
+  //Cuando el formulario se envie gatillara esta funcion
+  formularioSuma.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const {
+      numero1,
+      numero2
+    } = e.target;
+
+    const respuesta = await axios.get(`${urlApi}/SumaNumeros`, {
+      params: {
+        numero1: numero1.value,
+        numero2: numero2.value
+      }
+    });
+    resultadoSuma.innerText = respuesta.data.resultado;
+  })
+</script>
