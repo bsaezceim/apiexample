@@ -12,7 +12,7 @@
   <button>Enviar</button>
 </form>
 <h2>
-  El resultado es: <span id="resultadoSuma">esperando...</span>
+  El resultado es: <br> <span id="resultadoSuma"></span>
 </h2>
 
 <script>
@@ -33,6 +33,12 @@
         numero2: numero2.value
       }
     });
-    resultadoSuma.innerText = respuesta.data.resultado;
+    //insertAdjacentHTML
+    resultadoSuma.insertAdjacentHTML('beforeend', respuesta.data.resultado);
+    //insert salto de linea
+    resultadoSuma.insertAdjacentHTML('beforeend', '<br><br>(EN JSON SERÍA):<br><br>');
+    //insert json format
+    resultadoSuma.insertAdjacentHTML('beforeend', JSON.stringify(respuesta.data, null, 2));
+
   })
 </script>
