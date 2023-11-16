@@ -5,6 +5,13 @@ import { SumarNumeros } from './Helpers/SumarNumeros.js';
 const app = express();
 app.use(cors());
 
+
+
+
+
+
+
+
 //Endpoint de API para sumar numeros
 app.get('/SumaNumeros', (req, res) => {
   //Recibe los numeros a sumar
@@ -14,6 +21,29 @@ app.get('/SumaNumeros', (req, res) => {
   //Devuelve el resultado
   return res.json({ resultado });
 });
+
+app.get('/MultiplicarX2', (req, res) => {
+  //Recibe los numeros a sumar
+  const { numero1 } = req.query;
+  //Llama a la funcion que suma numeros
+  const resultado = MultiplicarX2(numero1);
+  //Devuelve el resultado
+  return res.json({ resultado });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Abre el servidor backend en el puerto 8080
 app.listen(8080, () => {
